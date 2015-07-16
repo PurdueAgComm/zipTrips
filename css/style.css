@@ -1,0 +1,50 @@
+.highlight-blue {
+  background-color: #095ead;
+}
+
+.highlight-blue h1, .highlight-blue h2, .highlight-blue h3, .highlight-blue h4, .highlight-blue p  {
+	color: #f9f9f9;
+}
+
+.userCount {
+	text-align: center;
+	height: 60px;
+	padding: 10px;
+	margin: 10px 0px 10px 0px;
+	border: 1px solid #83ba36;
+	background-color: #8CC739;
+}
+
+.classCount {
+	text-align: center;
+	height: 60px;
+	padding: 10px;
+	margin: 10px 0px 10px 0px;
+	border: 1px solid #4385ba;
+	background-color: #4990cc;
+}
+
+.countryCount {
+	text-align: center;
+	height: 60px;
+	padding: 10px;
+	margin: 10px 0px 10px 0px;
+	border: 1px solid #d4573b;
+	background-color: #ec5f41;
+}
+
+.statText { 
+	display: block;
+	font-size: .75em;
+	font-weight: 700;
+	line-height: 1;
+	text-transform: uppercase;
+	color: #FFF;
+}
+
+.statTextBig {
+	font-size: 2em;
+	font-weight: 700;
+	display: block;
+	color: #fff;
+}
