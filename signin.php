@@ -1,5 +1,5 @@
-<?php 
-include_once('includes/header.php'); 
+<?php
+include_once('includes/header.php');
 
 if(!empty($_SESSION["strRole"])) {
 	// TODO: For some reason this message doesn't work?
@@ -25,7 +25,7 @@ if(!empty($_SESSION["strRole"])) {
       <div class="col-lg-6 col-md-6">
 
           	<?php
-			
+
           	($_SESSION["isLoginEnabled"]) ? $disabled = "" : $disabled = "<div class='alert alert-warning'><strong>Maintenance Mode Enabled</strong> This site is currently in maintenance mode and only administrators can log in.</div>";
           	echo $disabled;
 
@@ -40,7 +40,7 @@ if(!empty($_SESSION["strRole"])) {
 		        $_SESSION["error"] = "";
 			}
 			?>
-  	
+
 		<form class="form-horizontal" action="functions/doAccount.php" method="post" role="form">
 			  <div class="form-group <?php if($_SESSION['errorEmail']) echo 'has-error'; ?>">
 			    <label for="signInEmail" class="col-sm-2 control-label">Email</label>
@@ -62,7 +62,7 @@ if(!empty($_SESSION["strRole"])) {
 			  <div class="form-group">
 			    <div class="col-sm-offset-2 col-sm-8">
 			      <input name="action" value="login" type="hidden" />
-			      <button type="submit" class="btn btn-success">Log In</button> &nbsp;&nbsp;<a href="recover.php">Forgot password?</a> | <a href="signup.php">Register for an account</a>
+			      <button id="signInLogIn" type="submit" class="btn btn-success">Log In</button> &nbsp;&nbsp;<a id="signInForgotPassword" href="recover.php">Forgot password?</a> | <a href="signup.php">Register for an account</a>
 			    </div>
 			  </div>
 			</form>
@@ -71,7 +71,7 @@ if(!empty($_SESSION["strRole"])) {
 				<img src="https://dev.www.purdue.edu/ziptrips/images/kids.jpg" class="thumbnail pull-right" alt="group of students posing for camera" />
 		</div>
 
-<?php 
+<?php
 	$_SESSION["errorEmail"] = 0;
 	$_SESSION["errorPassword"] = 0;
 ?>
@@ -85,14 +85,14 @@ if(!empty($_SESSION["strRole"])) {
 		var passwordField = document.getElementById('signInPassword');
 		passwordField.type = 'text';
 		passwordField.type = 'password';
-		
+
 		// if it does support changing the field type then add the event handler and make
 		// the button visible. if the browser doesn't support it, then this is bypassed
 		// and code execution continues in the catch() section below
 		var togglePasswordField = document.getElementById('togglePasswordField');
 		togglePasswordField.addEventListener('click', togglePasswordFieldClicked, false);
 		togglePasswordField.style.display = 'inline';
-		
+
 	}
 	catch(err) {
 
@@ -108,10 +108,10 @@ function togglePasswordFieldClicked() {
 	else {
 		passwordField.type = 'password';
 		togglePasswordField.innerHTML = "<i rel='tooltip' title='Show password' class='fa fa-eye'></i>";
-		
+
 	}
 	passwordField.value = value;
-} 
+}
 </script>
 
 

@@ -47,7 +47,7 @@ $numTrips = mysql_num_rows($result);
 			 	<div class="col-sm-7 pull-left">
 			    	<h2><?= $featured["strTitle"] ?></h2>
 			    	<p><?= $featured["strBlurb"] ?></p>
-			    	<a href="joinTrip.php?tripID=<?= $featured["intTripID"]?>" class="btn btn-lg btn-block btn-success">Learn more</a>
+			    	<a id="dashboardLearnMore" href="joinTrip.php?tripID=<?= $featured["intTripID"]?>" class="btn btn-lg btn-block btn-success">Learn more</a>
 			    </div>
 			</div>
 
@@ -56,10 +56,10 @@ $numTrips = mysql_num_rows($result);
 			<h1>zipTrips Archive</h1>
 			<p>Past zipTrips are archived and waiting for your class to experience at your convenience! Why not sign up for all of them?</p>
 			<p>&nbsp;</p>
-			<?php 
+			<?php
 			$i = 0;
 			$count = 0;
-			while($trip = mysql_fetch_array($result)) { 
+			while($trip = mysql_fetch_array($result)) {
 				($i == 0) ? $row = "<div class='row'>" : $row = "";
 				echo $row;
 			?>
@@ -81,7 +81,7 @@ $numTrips = mysql_num_rows($result);
 					    		<?php } ?>
 					   		</div>
 					</div>
-				</div> 
+				</div>
 
 				<div class="panel panel-default hidden-md hidden-lg hidden-xl">
 				  <div class="panel-heading">
@@ -108,7 +108,7 @@ $numTrips = mysql_num_rows($result);
 				  </div>
 				</div>
 
-			<?php 
+			<?php
 			$count++;
 				if($i==0) {
 					$i=3;
@@ -120,7 +120,7 @@ $numTrips = mysql_num_rows($result);
 			$i--;
 			$count++;
 
-			} 
+			}
 
 			if($numTrips%3 != 0) {
 				echo "</div>";
@@ -129,10 +129,10 @@ $numTrips = mysql_num_rows($result);
 			?>
 
 		</div>
-	
+
 		<div class="col-lg-4 col-md-4">
-			
-			  	
+
+
 		<?php
 
 			$sqlNews = "SELECT * FROM tblNews JOIN tblUserNews ON tblNews.intNewsID = tblUserNews.intNewsID WHERE tblUserNews.intUserID=" . $_SESSION["userID"] . " AND tblNews.isArchived=0 ORDER BY dateCreated DESC LIMIT 3;";
@@ -159,20 +159,20 @@ $numTrips = mysql_num_rows($result);
 					    </div>
 					</li>
 
-		<?php } // while 
+		<?php } // while
 		} // if
 		else {
 		?>
 			<li class="media">
 					    <div class="media-body">
-					
+
 					      <p>News about zipTrips, shows, and participation will appear here. Currently, you have no alerts.</p>
 					    </div>
 					</li>
 
 		<?php } //else ?>
 			</ul>
-		
+
 		</div>
 	</div>
 

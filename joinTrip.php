@@ -65,13 +65,13 @@ $trip = mysql_fetch_array($result);
 			          $sql = "SELECT * FROM tblUserShow WHERE intUserID=" . $_SESSION["userID"] . " AND intTripShowID=" . $show["intTripShowID"];
 				      $resultUserShows = mysql_query($sql);
 				      $userShow = mysql_fetch_array($resultUserShows);
-	  
-	            		($show["isVideoConference"]) ? $video = "<input name='isVideoConference' type='checkbox' value='1'> I would like to volunteer to participate in <a href='#' data-toggle='modal' rel='tooltip' title='Lean more about what video conferencing entails.' data-target='#video'>video conferencing <i class='fa fa-external-link'></i></a>." : $video = "";
-	            		($show["isHotSeat"]) ? $hotseat = "<input name='isHotSeat' type='checkbox' value='1'> I would like to volunteer to participate in <a href='#' data-toggle='modal' data-target='#hotseat' rel='tooltip' title='Learn more about what Hotseat entails.'>Hotseat <i class='fa fa-external-link'></i></a>." : $hotseat = "";
+
+	            		($show["isVideoConference"]) ? $video = "<input id='isVideoConference' name='isVideoConference' type='checkbox' value='1'> I would like to volunteer to participate in <a href='#' data-toggle='modal' rel='tooltip' title='Lean more about what video conferencing entails.' data-target='#video'>video conferencing <i class='fa fa-external-link'></i></a>." : $video = "";
+	            		($show["isHotSeat"]) ? $hotseat = "<input id='isHotSeat' name='isHotSeat' type='checkbox' value='1'> I would like to volunteer to participate in <a href='#' data-toggle='modal' data-target='#hotseat' rel='tooltip' title='Learn more about what Hotseat entails.'>Hotseat <i class='fa fa-external-link'></i></a>." : $hotseat = "";
 
 
 	            		echo "<div class='panel panel-default'>";
-						echo "<div class='panel-heading'>";		    
+						echo "<div class='panel-heading'>";
 			            echo "<h3><i class='fa fa-clock-o'></i> " . date("F j, Y,", strtotime($show["dateBegin"])) . " at " . date("g:i A", strtotime($show["dateBegin"])) . " EST</h3>";
 						echo "</div>";
 						echo "<div class='panel-body'>";
@@ -79,13 +79,13 @@ $trip = mysql_fetch_array($result);
 						$today = mktime(date("H"),date("i"),date("s"),date("m"),date("d"),date("Y"));
 
 
-			            if(empty($userShow["intUserID"])) {	
+			            if(empty($userShow["intUserID"])) {
 
-		            	            			
-		            	
+
+
 			       	?>
 							<form method="post" role="form" class="form-horizontal" action="functions/doShow.php">
-							<?php 
+							<?php
 							if(strtotime($show["dateBegin"]) > $today) {
 
 			            		if($show["isVideoConference"] || $show["isHotseat"]) {
@@ -95,7 +95,7 @@ $trip = mysql_fetch_array($result);
 			            		else {
 			            			echo "<h4>No Participation Availabile</h4>";
 			            			echo "<p>You may still watch the stream of this show; however, live video conferencing and HotSeat is unavailable.</p>";
-			            		}	
+			            		}
 
 								if($show["isVideoConference"] || $show["isHotseat"]) { ?>
 					           <div class="form-group <?php if($_SESSION['errorParticipate']) echo 'has-error'; ?>">
@@ -104,17 +104,12 @@ $trip = mysql_fetch_array($result);
 					               <div class="checkbox">
 					                <label>
 					                  <?= $video; ?>
-					                </label>              
+					                </label>
 					              </div>
 					               <div class="checkbox">
 					                <label>
 					                  <?= $hotseat; ?>
-					                </label>              
-					              </div>
-					              <div class="checkbox">
-					                <label>
-					                 	<input name='useless' type='checkbox' value='1'> I am not interested in these interactive options.
-					                </label>              
+					                </label>
 					              </div>
 					            </div>
 					          </div>
@@ -125,17 +120,17 @@ $trip = mysql_fetch_array($result);
 					            <div class="col-sm-12">
 					              <input name="action" value="join" type="hidden" />
 					              <input name="showID" value="<?= $show['intTripShowID'] ?>" type="hidden" />
-					              <button type="submit" class="btn btn-block btn-success"><i class='fa fa-plus'></i> Sign up now</button>
+					              <button id="joinTripSignUp" type="submit" class="btn btn-block btn-success"><i class='fa fa-plus'></i> Sign up now</button>
 					            </div>
 					          </div>
 							</form>
 		        <?php
-		         } 
-		         else { 
+		         }
+		         else {
 		         	($userShow["isVideoConference"]) ? $video = "<i class='fa fa-check'></i> You have signed up to participate in <strong>video conferencing</strong>." : $video = "<i class='fa fa-times'></i> You did not sign up to participate in video conferencing.";
 	            	($userShow["isHotSeat"]) ? $hotseat = "<i class='fa fa-check'></i> You have signed up to participate in <strong>Hotseat</strong>." : $hotseat = "<i class='fa fa-times'></i> You did not sign up to participate in Hotseat.";
 		         	?>
-					
+
 					<h4><span style="color: #47a447;"><i class='fa fa-check-square'></i></span> You've joined this zipTrip show!</h4>
 					<p>Get resources, participate in discussion, and view all of your zipTrips by visiting <a href="myTrips.php">My zipTrips</a>.
 					<blockquote>
@@ -152,8 +147,8 @@ $trip = mysql_fetch_array($result);
 		    } // if
           ?>
 
- 
-   
+
+
         </div>
 </div>
 
@@ -223,6 +218,6 @@ $trip = mysql_fetch_array($result);
 
 
 
-<?php 
+<?php
 include_once("includes/footer.php");
 ?>

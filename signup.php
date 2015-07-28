@@ -1,6 +1,6 @@
 
-<?php 
-include_once('includes/header.php'); 
+<?php
+include_once('includes/header.php');
 include_once('functions/user-functions.php');
 
 ?>
@@ -23,10 +23,10 @@ include_once('functions/user-functions.php');
         <div class="row">
           <div class="col-lg-6 col-md-6">
 
-			
+
           	<?php
           	($_SESSION["isRegistrationEnabled"]) ? $disabled = "" : $disabled = "<div class='alert alert-warning'>Sign Ups are currently closed.</div>";
-          	
+
           	echo $disabled;
 
 	  	    if ($_SESSION["success"] != "") {
@@ -66,16 +66,15 @@ include_once('functions/user-functions.php');
 			  <div class="form-group">
 			    <div class="col-sm-offset-2 col-sm-8">
 			      <input name="action" value="register" type="hidden" />
-			      <button type="submit" <?php if(!$_SESSION["isRegistrationEnabled"]) echo "disabled" ?> class="btn btn-success">
-			      	<?php 
-			      	if(!$_SESSION["isRegistrationEnabled"]) { 
-			      		echo "<i class='fa fa-ban'></i> Registration Closed"; 
-			      	} 
-			      	else { 
-			      		echo "Register"; 
-			      	}  
+			      <button id="signUpRegister" type="submit" <?php if(!$_SESSION["isRegistrationEnabled"]) echo "disabled" ?> class="btn btn-success">
+			      	<?php
+			      	if(!$_SESSION["isRegistrationEnabled"]) {
+			      		echo "<i class='fa fa-ban'></i> Registration Closed";
+			      	}
+			      	else {
+			      		echo "Register";
+			      	}
 			      	?>
-
 				  </button> &nbsp;&nbsp;<a href="signin.php">Already signed up?</a>
 			    </div>
 			  </div>
@@ -86,7 +85,7 @@ include_once('functions/user-functions.php');
 		</div>
 
 
-<?php 
+<?php
 	$_SESSION["errorEmail"] = 0;
 	$_SESSION["errorPassword"] = 0;
 ?>
@@ -101,14 +100,14 @@ include_once('functions/user-functions.php');
 		var passwordField = document.getElementById('signInPassword');
 		passwordField.type = 'text';
 		passwordField.type = 'password';
-		
+
 		// if it does support changing the field type then add the event handler and make
 		// the button visible. if the browser doesn't support it, then this is bypassed
 		// and code execution continues in the catch() section below
 		var togglePasswordField = document.getElementById('togglePasswordField');
 		togglePasswordField.addEventListener('click', togglePasswordFieldClicked, false);
 		togglePasswordField.style.display = 'inline';
-		
+
 	}
 	catch(err) {
 
@@ -124,10 +123,10 @@ function togglePasswordFieldClicked() {
 	else {
 		passwordField.type = 'password';
 		togglePasswordField.innerHTML = "<i rel='tooltip' title='Show password' class='fa fa-eye'></i>";
-		
+
 	}
 	passwordField.value = value;
-} 
+}
 </script>
 
 

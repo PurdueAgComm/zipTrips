@@ -1,5 +1,5 @@
 
-<?php 
+<?php
 include_once("includes/header.php");
 include_once("functions/db.php");
 
@@ -16,17 +16,17 @@ $resultBanner = mysql_query($sqlBanner);
 $numTrips = mysql_num_rows($resultBanner);
 
 ?>
-    
+
     <div id="myCarousel" class="carousel slide hidden-xs">
       <!-- Indicators -->
         <ol class="carousel-indicators">
-          <?php 
-          for($i=0; $i<=$numTrips-1; $i++) { 
+          <?php
+          for($i=0; $i<=$numTrips-1; $i++) {
             if($i == 0) {
               echo "<li data-target='#myCarousel' data-slide-to='" . $i . "' class='active'></li>";
             }
             else {
-              echo "<li data-target='#myCarousel' data-slide-to='" . $i . "'></li>"; 
+              echo "<li data-target='#myCarousel' data-slide-to='" . $i . "'></li>";
             }
           }
           ?>
@@ -35,9 +35,9 @@ $numTrips = mysql_num_rows($resultBanner);
         <!-- Wrapper for slides -->
         <div class="carousel-inner">
 
-        <?php 
+        <?php
         $i=1;
-        while($trip = mysql_fetch_array($resultBanner)) { 
+        while($trip = mysql_fetch_array($resultBanner)) {
           if($i==1) {
         ?>
               <div class="item active">
@@ -118,7 +118,7 @@ $numTrips = mysql_num_rows($resultBanner);
                 <div class="form-group">
                   <div class="col-sm-offset-2 col-sm-8">
                     <input name="action" value="register" type="hidden" />
-                    <button type="submit" class="btn btn-success">Register</button> &nbsp;&nbsp;<a href="signin.php">Already signed up?</a>
+                    <button id="indexRegister" type="submit" class="btn btn-success">Register</button> &nbsp;&nbsp;<a href="signin.php">Already signed up?</a>
                   </div>
                 </div>
             </form>
@@ -152,7 +152,7 @@ $numTrips = mysql_num_rows($resultBanner);
               <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-8">
                   <input name="action" value="login" type="hidden" />
-                    <button type="submit" class="btn btn-success">Log In</button> &nbsp;&nbsp;<a href="recover.php">Forgot password?</a>
+                    <button id="indexLogin" type="submit" class="btn btn-success">Log In</button> &nbsp;&nbsp;<a href="recover.php">Forgot password?</a>
                 </div>
               </div>
             </form>
@@ -181,7 +181,7 @@ $numTrips = mysql_num_rows($resultBanner);
           <div class="col-lg-7 col-md-7 col-sm-7">
             <h2><i class="fa fa-star"></i> Featured Trip: <?= $featured["strTitle"]?></h2>
             <p><?= $featured["strDescription"];?></p>
-            <a class="btn btn-lg btn-block btn-success" href="joinTrip.php?tripID=<?= $featured["intTripID"]; ?>">Learn more</a>
+            <a id="indexLearnMore" class="btn btn-lg btn-block btn-success" href="joinTrip.php?tripID=<?= $featured["intTripID"]; ?>">Learn more</a>
          </div>
         </div><!-- /.row -->
       </div><!-- /.container -->
@@ -195,10 +195,10 @@ $numTrips = mysql_num_rows($resultBanner);
             <hr>
           </div>
 
-        <?php 
+        <?php
         $i = 0;
         $count = 0;
-        while($trip = mysql_fetch_array($result)) { 
+        while($trip = mysql_fetch_array($result)) {
           ($i == 0) ? $row = "<div class='row'>" : $row = "";
           echo $row;
         ?>
@@ -219,7 +219,7 @@ $numTrips = mysql_num_rows($resultBanner);
                     <?php } ?>
                   </div>
             </div>
-          </div> 
+          </div>
 
           <div class="panel panel-default hidden-md hidden-lg hidden-xl">
             <div class="panel-heading">
@@ -246,7 +246,7 @@ $numTrips = mysql_num_rows($resultBanner);
             </div>
           </div>
 
-        <?php 
+        <?php
         $count++;
           if($i==0) {
             $i=3;
@@ -258,7 +258,7 @@ $numTrips = mysql_num_rows($resultBanner);
         $i--;
         $count++;
 
-        } 
+        }
 
         if($numTrips%3 != 0) {
           echo "</div>";
@@ -267,7 +267,7 @@ $numTrips = mysql_num_rows($resultBanner);
         ?>
       </div>
     </div>
- 
+
 <script>
 (function() {
   try {
@@ -277,14 +277,14 @@ $numTrips = mysql_num_rows($resultBanner);
     var passwordField = document.getElementById('signInPassword');
     passwordField.type = 'text';
     passwordField.type = 'password';
-    
+
     // if it does support changing the field type then add the event handler and make
     // the button visible. if the browser doesn't support it, then this is bypassed
     // and code execution continues in the catch() section below
     var togglePasswordField = document.getElementById('togglePasswordField');
     togglePasswordField.addEventListener('click', togglePasswordFieldClicked, false);
     togglePasswordField.style.display = 'inline';
-    
+
   }
   catch(err) {
 
@@ -300,10 +300,10 @@ function togglePasswordFieldClicked() {
   else {
     passwordField.type = 'password';
     togglePasswordField.innerHTML = "<i rel='tooltip' title='Show password' class='fa fa-eye'></i>";
-    
+
   }
   passwordField.value = value;
-} 
+}
 
 
 (function() {
@@ -314,14 +314,14 @@ function togglePasswordFieldClicked() {
     var passwordField = document.getElementById('signInPassword2');
     passwordField.type = 'text';
     passwordField.type = 'password';
-    
+
     // if it does support changing the field type then add the event handler and make
     // the button visible. if the browser doesn't support it, then this is bypassed
     // and code execution continues in the catch() section below
     var togglePasswordField = document.getElementById('togglePasswordField2');
     togglePasswordField.addEventListener('click', togglePasswordFieldClicked2, false);
     togglePasswordField.style.display = 'inline';
-    
+
   }
   catch(err) {
 
@@ -338,15 +338,15 @@ function togglePasswordFieldClicked2() {
   else {
     passwordField.type = 'password';
     togglePasswordField.innerHTML = "<i rel='tooltip' title='Show password' class='fa fa-eye'></i>";
-    
+
   }
   passwordField.value = value;
-} 
+}
 
 
 </script>
 
 
-<?php 
+<?php
 include_once("includes/footer.php");
 ?>
