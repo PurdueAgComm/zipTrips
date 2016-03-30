@@ -1,4 +1,4 @@
-<?php session_start(); 
+<?php session_start();
 
 include_once("functions/db.php");
 
@@ -30,14 +30,12 @@ include_once("functions/db.php");
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
     <!-- IE FONT AWESOME HACK -->
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
-    
+
 
 
 
   </head>
-
   <body>
-
     <nav class="navbar navbar-default navbar-fixed-top" style="border-bottom: 3px solid #8cc739; background-color: #fff;" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -48,10 +46,9 @@ include_once("functions/db.php");
             <span class="icon-bar"></span>
           </button>
           <!-- You'll want to use a responsive image option so this logo looks good on devices - I recommend using something like retina.js (do a quick Google search for it and you'll find it) -->
-          <?php (empty($_SESSION["strRole"])) ? $logo = "<a class='navbar-brand' href='index.php'><img alt='Purdue zipTrips' src='images/logo.png' /></a>" : $logo = "<a class='navbar-brand' href='dashboard.php'><img alt='Purdue zipTrips' src='images/logo.png' /></a>"; 
+          <?php (empty($_SESSION["strRole"])) ? $logo = "<a class='navbar-brand' href='index.php'><img alt='Purdue zipTrips' src='images/logo.png' /></a>" : $logo = "<a class='navbar-brand' href='dashboard.php'><img alt='Purdue zipTrips' src='images/logo.png' /></a>";
                 echo $logo;
           ?>
-
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -67,7 +64,7 @@ include_once("functions/db.php");
             </li>
             <li><a href="contact.php"><i class="fa fa-envelope"></i> Contact Us</a></li>
 
-            <?php if(!empty($_SESSION["strRole"])) { 
+            <?php if(!empty($_SESSION["strRole"])) {
               include_once("functions/db.php");
               include_once("functions/user-functions.php");
 
@@ -88,8 +85,6 @@ include_once("functions/db.php");
                 <li><a href="functions/doAccount.php?action=logout"><i class="fa fa-sign-out"></i> Log out</a></li>
               </ul>
               </li>
-
-
             <?php } else { ?>
               <li><a href="signup.php"><i class="fa fa-plus"></i> Register</a></li>
              <li><a href="signin.php"><i class="fa fa-sign-in"></i> Log In</a></li>
@@ -98,5 +93,17 @@ include_once("functions/db.php");
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container -->
     </nav>
+    <?php if($_SESSION["server_warning"] == 1) : ?>
+      <br class="clearfix">
+      <br class="clearfix">
+      <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+            <div class="alert alert-warning"><i class="fa fa-warning"></i> <strong>Attention!</strong> You are not on production.</div>
+        </div>
+      </div>
+      </div>
+    <?php endif; ?>
 
-   
+
+
