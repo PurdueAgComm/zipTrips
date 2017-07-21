@@ -32,9 +32,9 @@ function timeDiff($firstTime,$lastTime) {
         </div>
      	</div>
 
-     
 
-<?php 
+
+<?php
   $sql = "SELECT * FROM tblUserShow INNER JOIN tblTripShow ON tblUserShow.intTripShowID = tblTripShow.intTripShowID WHERE tblUserShow.intUserID=" . $_SESSION["userID"] . " GROUP BY intTripID";
   $result = mysql_query($sql);
   $numShows = mysql_num_rows($result);
@@ -52,7 +52,7 @@ function timeDiff($firstTime,$lastTime) {
                 echo "<div class='alert alert-danger alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><p><strong>Error!</strong> " . $_SESSION["error"] . "</p></div>";
                 $_SESSION["error"] = "";
           }
-        
+
 	        if($numShows > 0) {
 	        	while($show = mysql_fetch_array($result)) {
 	    			$sql2 = "SELECT * FROM tblTrip WHERE intTripID=" . $show["intTripID"] . " LIMIT 1";
@@ -72,7 +72,7 @@ function timeDiff($firstTime,$lastTime) {
 					</div>
 	    <?php 		}
 	    			else {
-    			
+
 					$sqlShowUpcoming = "SELECT * FROM tblTripShow WHERE intTripID=" . $trip["intTripID"] . " AND dateEnd > NOW() ORDER BY dateBegin ASC LIMIT 1";
 					$resultShowUpcoming = mysql_query($sqlShowUpcoming);
 					$numShowsUpcoming = mysql_num_rows($resultShowUpcoming);
@@ -131,9 +131,9 @@ function timeDiff($firstTime,$lastTime) {
 									<?php
 									if(!empty($showUpcoming["dateBegin"])) {
 									?>
-									<div class="well well-sm">
+									<div class="alert alert-info">
 									<strong>Next Show</strong>: <?= date("l, F j, Y,", strtotime($showUpcoming["dateBegin"])) . " at " . date("g:i A", strtotime($showUpcoming["dateBegin"])) ?> EST (Duration: <?= timeDiff( date("G:i", strtotime($showUpcoming["dateBegin"])), date("G:i", strtotime($showUpcoming["dateEnd"]))) ?> minutes)
-									<?php if(!empty($show["strLiveURL"])) { echo "<br /><strong>Live URL:</strong> <a href='" . $show["strLiveURL"] . "'>" . $show["strLiveURL"] . "</a>";} ?>
+									<?php if(!empty($showUpcoming["strLiveURL"])) { echo "<br /><strong>Live URL:</strong> <a class='alert-link' href='" . $showUpcoming["strLiveURL"] . "'>" . $showUpcoming["strLiveURL"] . "</a>";} ?>
 									</div>
 									<?php } ?>
 
@@ -149,7 +149,7 @@ function timeDiff($firstTime,$lastTime) {
 										<li><a href="assets/techGuide.pdf">Technical Guide</a></li>
 									</ul>
 
-									<?php 
+									<?php
 										$sqlShow = "SELECT * FROM tblTripShow JOIN tblUserShow ON tblTripShow.intTripShowID = tblUserShow.intTripShowID WHERE intTripID=" . $trip["intTripID"] . " AND intUserID=" . $_SESSION["userID"] . " AND dateEnd < NOW() ORDER BY dateEnd DESC;";
 										$resultShow = mysql_query($sqlShow) or die(mysql_error());
 										$numShows2 = mysql_num_rows($resultShow);
@@ -173,13 +173,13 @@ function timeDiff($firstTime,$lastTime) {
 														<?= $questionShow ?>
 													</blockquote>
 												</li>
-										<?php 	
+										<?php
 											} // end while
 											echo "</ul>";
 										}// end if
-								
+
 									?>
-									
+
 								</div>
 								<div class="col-lg-6">
 									<h4>Week of Scientists Videos</h4>
@@ -195,7 +195,7 @@ function timeDiff($firstTime,$lastTime) {
 														<h5><i style="color: #990000;" class='fa fa-youtube-play'></i> &nbsp;<strong><a target="_blank" href="<?= $video["strVideoURL"]?>"><?= $video["strVideoTitle"];?></strong></a></h5>
 														<small><?= $video["strVideoDescription"] ?></small>
 													</li>
-										<?php } 
+										<?php }
 											}
 											else {
 												echo "<li class='list-group-item'><small>There are currently no videos for this zipTrip.</small>.</li>";
@@ -206,7 +206,7 @@ function timeDiff($firstTime,$lastTime) {
 
 								</div>
 							</div>
-							</div>			 
+							</div>
 
 
 						</div>
@@ -214,12 +214,12 @@ function timeDiff($firstTime,$lastTime) {
 
 
 
-        <?php } } } else { 
+        <?php } } } else {
 			$sql = "SELECT * FROM tblTrip JOIN tblTripShow ON tblTrip.intTripID = tblTripShow.intTripID WHERE isArchived=0 AND tblTrip.isFeatured=1 ORDER BY tblTripShow.dateBegin LIMIT 1";
 			$result = mysql_query($sql);
 			$featured = mysql_fetch_array($result);
         	?>
-			
+
 			<div class="alert alert-info">
 			<h2><i class="fa fa-info-circle"></i> Let's get started...</h2>
 			<p>Ready to sign up for a zipTrip? Head to your <a href="dashboard.php" class="alert-link">dashboard</a> to get started or take a look at our featured trip below! Then visit My zipTrips to manage your selections.</p>
