@@ -33,7 +33,7 @@
 	background-color: #ec5f41;
 }
 
-.statText { 
+.statText {
 	display: block;
 	font-size: .75em;
 	font-weight: 700;
@@ -47,4 +47,19 @@
 	font-weight: 700;
 	display: block;
 	color: #fff;
+}
+
+.tripMeta {
+	font-size: 1.3em;
+	margin-top: -10px;
+}
+
+.tripActions {
+	margin: 15px 0;
+}
+
+.tripDescription {
+	border-left: 3px solid #8cc739;
+	padding: 10px;
+	margin: 10px 0;
 }

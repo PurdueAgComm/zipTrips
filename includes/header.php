@@ -54,6 +54,12 @@ include_once("functions/db.php");
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav navbar-right" style="margin-top: 20px;">
+
+            <?php if(!empty($_SESSION["userID"])) : ?>
+              <!-- TODO: remove before production -->
+              <li><a href="myTripsNew.php" style="color: red;"><i class="fa fa-warning"></i> New zipTrips Page</a></li>
+              <li><a href="dashboard.php"><i class="fa fa-tachometer"></i> Dashboard</a></li>
+            <?php endif; ?>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-book"></i> Learn <b class="caret"></b></a>
               <ul class="dropdown-menu">

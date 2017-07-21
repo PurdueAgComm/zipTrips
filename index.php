@@ -1,7 +1,6 @@
 
 <?php
 include_once("includes/header.php");
-include_once("functions/db.php");
 
 $sql = "SELECT * FROM tblTrip JOIN tblTripShow ON tblTrip.intTripID = tblTripShow.intTripID WHERE isArchived=0 AND tblTrip.isFeatured=1 ORDER BY tblTripShow.dateBegin LIMIT 1";
 $result = mysql_query($sql);

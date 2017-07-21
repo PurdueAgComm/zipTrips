@@ -9,8 +9,8 @@
       <footer>
         <div class="row">
           <div class="col-lg-12">
-            <p>Copyright &copy; <?= date("Y")?> Purdue University | An equal access, equal opportunity university<br />
-            <small>Purdue Agriculture, 615 West State Street, West Lafayette, IN 47907-2053 USA, (765) 494-8392<br />
+            <p><small>Copyright &copy; <?= date("Y")?> Purdue University | An equal access, equal opportunity university<br />
+            Purdue Agriculture, 615 West State Street, West Lafayette, IN 47907-2053 USA, (765) 494-8392<br />
             If you have trouble accessing this page because of a disability, please contact the webmaster at <a href="mailto:agweb@purdue.edu">agweb@purdue.edu</a>.</small></p>
           </div>
         </div>

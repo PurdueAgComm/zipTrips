@@ -80,10 +80,7 @@ $trip = mysql_fetch_array($result);
 
 
 			            if(empty($userShow["intUserID"])) {
-
-
-
-			       	?>
+			         ?>
 							<form method="post" role="form" class="form-horizontal" action="functions/doShow.php">
 							<?php
 							if(strtotime($show["dateBegin"]) > $today) {
@@ -93,7 +90,7 @@ $trip = mysql_fetch_array($result);
 			            			echo "<p>We select students to interact with during each live show. If you would like to volunteer, please select from the following options: ";
 			            		}
 			            		else {
-			            			echo "<h4>No Participation Availabile</h4>";
+			            			echo "<h4>No Live Participation Availabile</h4>";
 			            			echo "<p>You may still watch the stream of this show; however, live video conferencing and HotSeat is unavailable.</p>";
 			            		}
 
@@ -127,18 +124,33 @@ $trip = mysql_fetch_array($result);
 		        <?php
 		         }
 		         else {
-		         	($userShow["isVideoConference"]) ? $video = "<i class='fa fa-check'></i> You have signed up to participate in <strong>video conferencing</strong>." : $video = "<i class='fa fa-times'></i> You did not sign up to participate in video conferencing.";
-	            	($userShow["isHotSeat"]) ? $hotseat = "<i class='fa fa-check'></i> You have signed up to participate in <strong>Hotseat</strong>." : $hotseat = "<i class='fa fa-times'></i> You did not sign up to participate in Hotseat.";
-		         	?>
 
-					<h4><span style="color: #47a447;"><i class='fa fa-check-square'></i></span> You've joined this zipTrip show!</h4>
-					<p>Get resources, participate in discussion, and view all of your zipTrips by visiting <a href="myTrips.php">My zipTrips</a>.
-					<blockquote>
-					<ul style='list-style-type: none; padding-left: 5px;'>
-						<li><?= $video ?></li>
-						<li><?= $hotseat ?></li>
-					</ul>
-					</blockquote>
+              if(strtotime($show["dateBegin"]) > $today) {
+  		         	($userShow["isVideoConference"]) ? $video = "<input id='isVideoConference' name='isVideoConference' type='checkbox' value='1' checked='checked'> I would like to volunteer to participate in <a href='#' data-toggle='modal' rel='tooltip' title='Lean more about what video conferencing entails.' data-target='#video'>video conferencing <i class='fa fa-external-link'></i></a>" : $video = "<input id='isVideoConference' name='isVideoConference' type='checkbox' value='1'> I would like to volunteer to participate in <a href='#' data-toggle='modal' rel='tooltip' title='Lean more about what video conferencing entails.' data-target='#video'>video conferencing <i class='fa fa-external-link'></i></a>.";
+  	            ($userShow["isHotSeat"]) ? $hotseat = "<input id='isHotSeat' name='isHotSeat' type='checkbox' value='1' checked='checked'> I would like to volunteer to participate in <a href='#' data-toggle='modal' data-target='#hotseat' rel='tooltip' title='Learn more about what Hotseat entails.'>Hotseat <i class='fa fa-external-link'></i></a>." : $hotseat = "<input id='isHotSeat' name='isHotSeat' type='checkbox' value='1'> I would like to volunteer to participate in <a href='#' data-toggle='modal' data-target='#hotseat' rel='tooltip' title='Learn more about what Hotseat entails.'>Hotseat <i class='fa fa-external-link'></i></a>.";
+
+
+  		         	?>
+                <form method="post" role="form" class="form-horizontal" action="functions/doShow.php">
+      					<h4><span style="color: #47a447;"><i class='fa fa-check-square'></i></span> You've joined this zipTrip show!</h4>
+      					<p>Get resources, participate in discussion, and view all of your zipTrips by visiting <a href="myTrips.php">My zipTrips</a>.</p>
+      					<blockquote>
+      					<ul style='list-style-type: none; padding-left: 5px;'>
+      						<li><?= $video ?></li>
+      						<li><?= $hotseat ?></li>
+      					</ul>
+      					</blockquote>
+                          <input type="hidden" name="action" value="updateParticipation">
+                          <input type="hidden" name="showID" value="<?php echo $userShow["intTripShowID"] ?>">
+                          <input type="hidden" name="tripID" value="<?php echo $_GET["tripID"] ?>">
+                          <button id="joinTripSignUp" type="submit" class="btn btn-block btn-default"><i class='fa fa-refresh'></i> Update my participation</button>
+                      </form>
+            <?php }
+            else { ?>
+                  <p><span class='label label-default'><i class='fa fa-video-camera'></i> Archived</span> This show has been recorded. View the recording on <a href="https://dev.www.purdue.edu/ziptrips/myTrips.php">My zipTrips</a>.</p>
+
+            <?php } ?>
+
 				<?php
 				}
 		            echo "</div>"; // end panel body
