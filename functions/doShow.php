@@ -383,7 +383,7 @@ else if($_POST['action'] == "updateParticipation") {
       $_SESSION["isHotSeat"] = 0;
     }
 
-    $sql = "UPDATE tblUserShow SET isVideoConference = " . $_SESSION["isVideoConference"] . ", isHotSeat = " . $_SESSION["isHotSeat"] . " WHERE intTripShowID = " . $showID . ";";
+    $sql = "UPDATE tblUserShow SET isVideoConference = " . $_SESSION["isVideoConference"] . ", isHotSeat = " . $_SESSION["isHotSeat"] . " WHERE intTripShowID = " . $showID . " AND intUserID=" . $_SESSION["userID"] . ";";
     mysql_query($sql);
     // echo "<br>" . $sql;
     // die("<br>done");

@@ -18,7 +18,7 @@ if($_POST["action"] == "add") {
 		$numResults = mysql_num_rows($result);
 
 		if($numResults < 1) {
-			$sql = "INSERT INTO tblTripShowHotseat (intTripShowID, intUserID) VALUES (" . $showID . ", " . $userID . ");";			
+			$sql = "INSERT INTO tblTripShowHotseat (intTripShowID, intUserID) VALUES (" . $showID . ", " . $userID . ");";
 			mysql_query($sql);
 
 			$sql = "SELECT strSchool, strFirstName, strLastName, strEmail FROM tblUser WHERE intUserID=" . $userID;
@@ -55,7 +55,7 @@ if($_POST["action"] == "add") {
 			$_SESSION["error"] = "That school has already been selected to participate in Hotseat for this show.";
 			header("Location: ../viewTrip.php?id=" . $tripID);
 		}
-		
+
 	}
 	else if($_POST["video"]) {
 
@@ -64,14 +64,14 @@ if($_POST["action"] == "add") {
 		$numResults = mysql_num_rows($result);
 
 		if($numResults < 1) {
-			$sql = "INSERT INTO tblTripShowConference (intTripShowID, intUserID) VALUES (" . $showID . ", " . $userID . ");";			
+			$sql = "INSERT INTO tblTripShowConference (intTripShowID, intUserID) VALUES (" . $showID . ", " . $userID . ");";
 			mysql_query($sql);
 
 			$sql = "SELECT strSchool, strFirstName, strLastName, strEmail FROM tblUser WHERE intUserID=" . $userID;
 			$result = mysql_query($sql);
 			$user = mysql_fetch_array($result);
 
-			// EMAIL INFORMATION // 
+			// EMAIL INFORMATION //
 			$to = $user["strEmail"];
 			$subject = "zipTrips Alert: You've been selected to participate in Video Conferencing!";
 			$message = "<html><body style='background-color: #fafafa;'>";
@@ -80,8 +80,7 @@ if($_POST["action"] == "add") {
 			$message .= "<tr><td colspan='3' width='75%'>&nbsp;</td> <td colspan='1' width='25%' align='right'>" . date("M d, Y") . "</td></tr>";
 			$message .= "<tr><td colspan='4' width='100%'>Hello " . $user["strFirstName"] . ",<br/><br/><p>";
 			$message .= "Congratulations! Your class will be appearing live in our upcoming zipTrip as our virtual in-studio class via IP videoconferencing. This means that, at certain times throughout the program, your class will appear in the show LIVE! Your students will get a chance to personally ask our Purdue scientists questions, and will will be seen by thousands of students all across the country on a large screen in the studio. Videoconferencing is a telecommunication technology which allows simultaneous two-way video and audio transmissions over the internet. It requires special videoconferencing equipment, and not all schools have this technology. We will be contacting you to make sure your system is ready to go on the day of the show. In the meantime, if you have any questions about how your system will connect with zipTrips, you can contact our information technology Help Desk at Purdue:<br /><br />";
-			$message .= "<strong>Phone:</strong> (800) 246-7615 (toll-free) or (317) 263-8999<br />";
-			$message .= "<strong>Email:</strong> helpdesk@ihets.org";
+			$message .= "<strong>Email:</strong> ziptrips@purdue.edu";
 			$message .= "<br/><br />Thanks,<br />Purdue zipTrips</td></tr>";
 			$message .= "</table>";
 			$message .= "</body></html>";
@@ -91,16 +90,18 @@ if($_POST["action"] == "add") {
 			$headers .= "MIME-Version: 1.0\r\n";
 			$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 			$headers .= "Content-Transfer-Encoding: base64\r\n\r\n";
-			mail($to,$subject,$message,$headers);
+			//TODO: update email and reenable for Skype
+			//mail($to,$subject,$message,$headers);
 
 			$_SESSION["success"] = $user["strSchool"] . " is now participating in Video Conferencing for this show. " . $user["strFirstName"] . " " . $user["strLastName"] . " has been notified that their class has been chosen to video conference. Their email address is <a class='alert-link' href='mailto:" . $user["strEmail"] . "'>" . $user["strEmail"] . "</a> if you wish to send them additional information.";
+			$_SESSION["error"] = "Currently the email notification is disabled as it has not been updated for Skype. Contact the web team to update.";
 			header("Location: ../viewTrip.php?id=" . $tripID);
 		}
 		else {
 			$_SESSION["error"] = "That school has already been selected to participate in video conferencing for this show.";
 			header("Location: ../viewTrip.php?id=" . $tripID);
 		}
-		
+
 	}
 
 
